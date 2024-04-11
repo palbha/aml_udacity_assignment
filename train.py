@@ -54,12 +54,23 @@ def main():
     # TODO: Create TabularDataset using TabularDatasetFactory
     # Data is located at:
     # "https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv"
+    paths = "https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv"
 
-    ds = ### YOUR CODE HERE ###
+    # create an MLTable from the data files
+    ds= mltable.from_delimited_files(
+        paths=path,
+        delimiter=",",
+        header=MLTableHeaders.all_files_same_headers,
+        infer_column_types=True,
+        include_path_column=False,
+        encoding=MLTableFileEncoding.utf8,
+    )
+    #ds = ### YOUR CODE HERE ###
     
     x, y = clean_data(ds)
 
     # TODO: Split data into train and test sets.
+    x_train, x_test, y_train, y_test = train_test_split(x, y, random_state=0)
 
     ### YOUR CODE HERE ###a
 
