@@ -57,20 +57,21 @@ def main():
     paths = "https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv"
 
     # create an MLTable from the data files
-    ds= mltable.from_delimited_files(
-        paths=path,
-        delimiter=",",
-        header=MLTableHeaders.all_files_same_headers,
-        infer_column_types=True,
-        include_path_column=False,
-        encoding=MLTableFileEncoding.utf8,
-    )
-    #ds = ### YOUR CODE HERE ###
-    
+    #ds= mltable.from_delimited_files(
+    #     paths=path,
+    #     delimiter=",",
+    #     header=MLTableHeaders.all_files_same_headers,
+    #     infer_column_types=True,
+    #     include_path_column=False,
+    #     encoding=MLTableFileEncosding.utf8,
+    # )
+    ds=TabularDatasetFactory.from_delimited_files(paths)
+   
     x, y = clean_data(ds)
 
     # TODO: Split data into train and test sets.
-    x_train, x_test, y_train, y_test = train_test_split(x, y, random_state=0)
+    x_train, x_test, y_train, y_test = train_test_split(x, y,stratify=y,
+    random_state=0)
 
     ### YOUR CODE HERE ###a
 
@@ -78,6 +79,9 @@ def main():
 
     accuracy = model.score(x_test, y_test)
     run.log("Accuracy", np.float(accuracy))
+
+    os.makedirs('outputs',exist_ok=True)
+    joblib.dump(model,'outputs/lg_model.pkl')
 
 if __name__ == '__main__':
     main()
