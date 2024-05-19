@@ -13,9 +13,17 @@ This model is then compared to an Azure AutoML run.
 
 
 ## Summary
-**In 1-2 sentences, explain the problem statement: e.g "This dataset contains data about... we seek to predict..."**
+The dataset contains direct marketing campaign data of a banking institute. It contains 20 features such as job,age, marital status etc.
+The target column contains categories as "yes"/ "no", to determine whether the client subscribed to the bank's term deposit.
 
-**In 1-2 sentences, explain the solution: e.g. "The best performing model was a ..."**
+In this project I did the following:
+
+Tuned the hyperparameters of the LogisticRegression model using Hyperdrive achieving an accuracy of ~91% for a C value of 18.18 and max_iter value of 200
+Using AutoML I could find the best algorithm & got an accuracy of 91.70% for **VotingEnsemble**
+The diagram depicts the necessary steps
+
+![image](https://github.com/palbha/aml_udacity_assignment/assets/20269788/6ddd9c58-fc7b-4de1-a5ce-0fc81e2f3d84)
+
 
 ## Scikit-learn Pipeline
 **Explain the pipeline architecture, including data, hyperparameter tuning, and classification algorithm.**
